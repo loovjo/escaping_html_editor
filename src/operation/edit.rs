@@ -74,6 +74,7 @@ impl Editable for Vec<Node> {
             Node::Comment(..) => false,
             Node::Text(text) => !text.trim().is_empty(),
             Node::Element { .. } => true,
+            Node::RawHTML { .. } => true,
         });
         for node in self.iter_mut() {
             if let Node::Element(el) = node {

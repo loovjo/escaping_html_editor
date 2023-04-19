@@ -91,6 +91,7 @@ impl Htmlifiable for Node {
                     format!(r#"<?xml version="{}" encoding="{}"?>"#, version, encoding)
                 }
             },
+            Node::RawHTML(html) => html.to_owned(),
         }
     }
 }
