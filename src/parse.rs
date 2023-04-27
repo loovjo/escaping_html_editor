@@ -129,7 +129,7 @@ fn html_to_stack(html: &str) -> Result<Vec<(Token, SourceLocation)>, HTMLParseEr
                         chars_stack = Vec::new();
                         let text_start_loc = next_loc - txt_len as isize;
                         // Push the text we just got to the token stack.
-                        token_stack.push((Token::from_text(txt_text), text_start_loc));
+                        token_stack.push((Token::from_raw_text(txt_text), text_start_loc));
                     }
                     chars_stack.push(ch);
                 }
@@ -178,7 +178,7 @@ fn html_to_stack(html: &str) -> Result<Vec<(Token, SourceLocation)>, HTMLParseEr
         let text_len = chars_stack.len();
         let text = String::from_iter(chars_stack);
         let text_start_loc = SourceLocation(html.chars().count() - text_len);
-        token_stack.push((Token::from_text(text), text_start_loc));
+        token_stack.push((Token::from_raw_text(text), text_start_loc));
     }
     Ok(token_stack)
 }
